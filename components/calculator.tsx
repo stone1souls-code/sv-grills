@@ -12,17 +12,29 @@ const initialState: OrderState = { status: "idle" }
 
 export function Calculator() {
   const { productId, selectProduct } = useOrder()
-  const product = getProduct(productId) ?? products[0]
-  
+  // 🎯 Якщо покупець обрав пункт "none", створюємо віртуальний товар із ціною 0 грн!
+  const product = productId === "none"
+    ? { id: "none", category: "mangals" as const, name: "ПУСТО", tagline: "", price: 0, image: "", specs: [] }
+    : (getProduct(productId) ?? products[0])
+
   const options = useMemo(() => {
+    // 🎯 Перевіряємо напряму черезproductId системи
+    if (productId === "none") {
+      const allAddons = getOptionsForCategory("mangals")
+        .concat(getOptionsForCategory("grills"))
+        .concat(getOptionsForCategory("smokers"))
+      return allAddons.filter((opt, index, self) => index === self.findIndex((t) => t.id === opt.id))
+    }
+    
+    // Для всіх інших звичайних моделей фільтруємо допи як завжди
     const baseOptions = getOptionsForCategory(product.category)
     return baseOptions.filter((option: any) => {
       if (option.productId) {
-        return option.productId === product.id
+        return option.productId === productId
       }
       return true
     })
-  }, [product.category, product.id])
+  }, [product.category, productId])
 
   const [quantities, setQuantities] = useState<Record<string, number>>({})
   const [state, formAction, pending] = useActionState(submitOrder, initialState)
@@ -46,24 +58,29 @@ export function Calculator() {
                 Модель
               </label>
               <select
-                id="product"
-                name="productId"
-                value={product.id}
-                onChange={(e) => selectProduct(e.target.value)}
-                className="w-full rounded-md border border-input bg-background px-4 py-3 text-base"
-              >
-                {categories.map((c) => (
-                  <optgroup key={c.id} label={c.title}>
-                    {products
-                      .filter((p) => p.category === c.id)
-                      .map((p) => (
-                        <option key={p.id} value={p.id}>
-                          {p.name} — {formatPrice(p.price)}
-                        </option>
-                      ))}
-                  </optgroup>
-                ))}
-              </select>
+  id="product"
+  name="productId"
+  value={productId || "none"} // 🎯 Змінюємо наproductId, щоб React не сварився
+  onChange={(e) => selectProduct(e.target.value)}
+  className="w-full rounded-md border border-input bg-background px-4 py-3 text-base text-white font-medium"
+>
+  {/* 🎯 НАШ ГОЛОВНИЙ ПУНКТ — ТЕПЕР ЗАВЖДИ СТОЇТЬ ПЕРШИМ ПОЗА ВСІМА ЦИКЛАМИ */}
+  <option value="none" className="font-bold text-orange-500 bg-zinc-900">
+    ПУСТО — 0 грн
+  </option>
+
+  {categories.map((c) => (
+    <optgroup key={c.id} label={c.title} className="bg-zinc-950 text-zinc-500 font-bold uppercase tracking-wider text-xs">
+      {products
+        .filter((p) => p.category === c.id)
+        .map((p) => (
+          <option key={p.id} value={p.id} className="bg-zinc-900 text-white font-medium normal-case text-base">
+            {p.name} — {formatPrice(p.price)}
+          </option>
+        ))}
+    </optgroup>
+  ))}
+</select>
             </div>
 
             <fieldset>
