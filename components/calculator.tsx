@@ -58,13 +58,18 @@ export function Calculator() {
                 Модель
               </label>
               <select
-  id="product"
+                id="product"
                 name="productId"
                 value={productId || "none"}
                 onChange={(e) => selectProduct(e.target.value)}
-                className="w-full rounded-md border border-zinc-800 bg-zinc-900 px-4 py-3 text-base text-white font-medium focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 appearance-none cursor-pointer"
-                style={{ backgroundColor: '#18181b', color: '#ffffff' }} // 🎯 Залізобетонний захист від білого фону на iPhone та в Chrome
->
+                className="w-full rounded-md border border-zinc-800 bg-zinc-900 px-4 py-3 text-base text-white font-medium focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 color-scheme-dark"
+                style={{ 
+                  backgroundColor: '#18181b', 
+                  color: '#ffffff',
+                  colorScheme: 'dark', // 🎯 Перемикає системний барабан iPhone/Android у темний режим
+                  WebkitAppearance: 'none' // Прибирає стандартні мобільні градієнти Safari
+                }}
+              >
 
   {/* 🎯 НАШ ГОЛОВНИЙ ПУНКТ — ТЕПЕР ЗАВЖДИ СТОЇТЬ ПЕРШИМ ПОЗА ВСІМА ЦИКЛАМИ */}
   <option value="none" className="font-bold text-orange-500 bg-zinc-900">
