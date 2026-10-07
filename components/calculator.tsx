@@ -59,11 +59,13 @@ export function Calculator() {
               </label>
               <select
   id="product"
-  name="productId"
-  value={productId || "none"} // 🎯 Змінюємо наproductId, щоб React не сварився
-  onChange={(e) => selectProduct(e.target.value)}
-  className="w-full rounded-md border border-input bg-background px-4 py-3 text-base text-white font-medium"
+                name="productId"
+                value={productId || "none"}
+                onChange={(e) => selectProduct(e.target.value)}
+                className="w-full rounded-md border border-zinc-800 bg-zinc-900 px-4 py-3 text-base text-white font-medium focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 appearance-none cursor-pointer"
+                style={{ backgroundColor: '#18181b', color: '#ffffff' }} // 🎯 Залізобетонний захист від білого фону на iPhone та в Chrome
 >
+
   {/* 🎯 НАШ ГОЛОВНИЙ ПУНКТ — ТЕПЕР ЗАВЖДИ СТОЇТЬ ПЕРШИМ ПОЗА ВСІМА ЦИКЛАМИ */}
   <option value="none" className="font-bold text-orange-500 bg-zinc-900">
     ПУСТО — 0 грн
