@@ -62,32 +62,26 @@ export function Calculator() {
                 name="productId"
                 value={productId || "none"}
                 onChange={(e) => selectProduct(e.target.value)}
-                className="w-full rounded-md border border-zinc-800 bg-zinc-900 px-4 py-3 text-base text-white font-medium focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 color-scheme-dark"
-                style={{ 
-                  backgroundColor: '#18181b', 
-                  color: '#ffffff',
-                  colorScheme: 'dark', // 🎯 Перемикає системний барабан iPhone/Android у темний режим
-                  WebkitAppearance: 'none' // Прибирає стандартні мобільні градієнти Safari
-                }}
+                className="w-full rounded-md border border-zinc-800 bg-zinc-900 px-4 py-3 text-base text-white font-medium focus:border-orange-500 focus:outline-none"
+                style={{ backgroundColor: '#18181b', color: '#ffffff' }}
               >
+                {/* 🎯 Наш головний пункт */}
+                <option value="none" style={{ backgroundColor: '#18181b', color: '#ffffff' }} className="text-white bg-zinc-900">
+                  ПУСТО — 0 грн
+                </option>
 
-  {/* 🎯 НАШ ГОЛОВНИЙ ПУНКТ — ТЕПЕР ЗАВЖДИ СТОЇТЬ ПЕРШИМ ПОЗА ВСІМА ЦИКЛАМИ */}
-  <option value="none" className="font-bold text-orange-500 bg-zinc-900">
-    ПУСТО — 0 грн
-  </option>
-
-  {categories.map((c) => (
-    <optgroup key={c.id} label={c.title} className="bg-zinc-950 text-zinc-500 font-bold uppercase tracking-wider text-xs">
-      {products
-        .filter((p) => p.category === c.id)
-        .map((p) => (
-          <option key={p.id} value={p.id} className="bg-zinc-900 text-white font-medium normal-case text-base">
-            {p.name} — {formatPrice(p.price)}
-          </option>
-        ))}
-    </optgroup>
-  ))}
-</select>
+                {categories.map((c) => (
+                  <optgroup key={c.id} label={c.title} style={{ backgroundColor: '#18181b', color: '#a1a1aa' }} className="bg-zinc-900 text-zinc-400">
+                    {products
+                      .filter((p) => p.category === c.id)
+                      .map((p) => (
+                        <option key={p.id} value={p.id} style={{ backgroundColor: '#18181b', color: '#ffffff' }} className="text-white bg-zinc-900">
+                          {p.name} — {formatPrice(p.price)}
+                        </option>
+                      ))}
+                  </optgroup>
+                ))}
+              </select>
             </div>
 
             <fieldset>

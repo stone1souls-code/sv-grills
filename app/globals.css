@@ -126,17 +126,3 @@
     @apply bg-background text-foreground;
   }
 }
-/* 🎯 ПРЕМІУМ-ПЕРЕМИКАЧ СИСТЕМНОГО БАРАБАНА НА СМАРТФОНАХ */
-select {
-  color-scheme: dark !important;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  appearance: none !important;
-}
-
-/* Фарбуємо внутрішні пункти для Google Chrome на Android та ПК */
-select option, 
-select optgroup {
-  background-color: #18181b !important; /* Вугільно-чорний */
-  color: #ffffff !important;           /* Чисто білий текст */
-}
