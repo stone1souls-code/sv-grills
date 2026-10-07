@@ -12,21 +12,19 @@ import { Platforms } from "@/components/platforms"
 
 export default function Page() {
   return (
-    <>
+    <OrderProvider> {/* 🎯 ПЕРЕНЕСЛИ СЮДИ: Тепер кошик доступний по всьому сайту, включаючи шапку! */}
       <SiteHeader />
       <main>
         <Hero />
-        <OrderProvider>
-          <Catalog />
-          <Calculator />
-        </OrderProvider>
+        <Catalog />
+        <Calculator />
         <Recipes />
         <About />
       </main>
       <SiteFooter />
-   <Lightbox />
-   <PrivacyLink />
-   <Platforms />
-    </>
+      <Lightbox />
+      <PrivacyLink />
+      <Platforms />
+    </OrderProvider>
   )
 }
