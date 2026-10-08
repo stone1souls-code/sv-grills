@@ -71,15 +71,25 @@ export function SiteHeader({ totalItems }: SiteHeaderProps) {
     <header className="sticky top-0 z-50 w-full border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         
-        {/* ЛОГОТИП БРЕНДУ — ПЛАВНО ПОВЕРТАЄ НА САМИЙ ВЕРХ СТОРІНКИ */}
+                {/* ЛОГОТИП БРЕНДУ — ТЕПЕР ПЛАВНО ПОВЕРТАЄ НА САМИЙ ВЕРХ СТОРІНКИ БЕЗ ЗБОЇВ */}
         <a
-          href="#top"
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            // Примусово скидаємо фокус з мобільних якорів
+                        if (window.history && window.history.pushState) {
+              window.history.pushState({}, document.title, window.location.pathname);
+            }
+
+          }}
           className="flex items-center gap-2 font-black uppercase tracking-wider text-white hover:text-orange-500 transition-colors"
         >
           <span className="text-sm sm:text-base">
             Сідай <span className="text-orange-500">&</span> Відпочивай
           </span>
         </a>
+
 
         {/* НАВІГАЦІЯ ДЛЯ КОМП'ЮТЕРІВ */}
         <nav className="hidden md:flex items-center gap-8">
