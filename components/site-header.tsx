@@ -119,11 +119,15 @@ export function SiteHeader({ totalItems }: SiteHeaderProps) {
   Калькулятор
 </Link>
           <Link
-            href="#recipes"
-            className="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-orange-500 transition-colors"
-          >
-            Рецепти
-          </Link>
+  href="#recipes"
+  onClick={(e) => {
+    e.preventDefault();
+    document.getElementById("recipes")?.scrollIntoView({ behavior: "smooth" });
+  }}
+  className="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-orange-500 transition-colors"
+>
+  Рецепти
+</Link>
           <Link
             href="#about"
             className="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-orange-500 transition-colors"

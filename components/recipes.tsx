@@ -1,25 +1,32 @@
+"use client"
+
+import { useRef } from "react"
 import Image from "next/image"
-import { Clock, Flame } from "lucide-react"
+import { Clock, Flame, ChevronLeft, ChevronRight } from "lucide-react"
 
 const recipes = [
   {
-    id: "shashlyk",
-    title: "Класичний шашлик зі свинини",
-    equipment: "Мангал",
-    time: "40 хв + маринування",
-    image: "/images/recipe-shashlyk.png",
+    id: "brisket",
+    title: "Техаський брискет",
+    tag: "Low & Slow 🇺🇸",
+    equipment: "Реверсний смокер",
+    time: "10–12 год",
+    image: "/images/recipe-brisket.png",
+    bgClass: "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-red-950/30 via-zinc-900 to-black border-red-900/20",
     steps: [
-      "Наріжте свинячу шию кубиками 4–5 см.",
-      "Замаринуйте з цибулею, сіллю, перцем і мінеральною водою на 4–6 годин.",
-      "Смажте на рівному жарі без полум’я, перевертаючи кожні 3–4 хвилини.",
+      "Посипте яловичу грудинку крупною сіллю та чорним перцем 1:1.",
+      "Коптіть на дубових дровах при 115–120 °C до внутрішніх 75 °C.",
+      "Загорніть у крафт-папір, доведіть до 93 °C і дайте відпочити 1 годину.",
     ],
   },
   {
     id: "ribs",
-    title: "Свинячі ребра BBQ з глазур’ю",
+    title: "Свинячі ребра Buffalo з глазур’ю",
+    tag: "Реберця 🪵",
     equipment: "Вугільний гриль",
     time: "2 год 30 хв",
     image: "/images/recipe-ribs.png",
+    bgClass: "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-950/30 via-zinc-900 to-black border-orange-900/20",
     steps: [
       "Натріть ребра сумішшю паприки, коричневого цукру, часнику та солі.",
       "Готуйте непрямим жаром при 140 °C під кришкою близько 2 годин.",
@@ -27,64 +34,157 @@ const recipes = [
     ],
   },
   {
-    id: "brisket",
-    title: "Техаський брискет",
-    equipment: "Реверсний смокер",
-    time: "10–12 год",
-    image: "/images/recipe-brisket.png",
+    id: "wings",
+    title: "Хрусткі крильця Buffalo",
+    tag: "Птиця 🔥",
+    equipment: "Мангал / Гриль",
+    time: "45 хв",
+    image: "/placeholder.svg",
+    bgClass: "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-950/30 via-zinc-900 to-black border-amber-900/20",
     steps: [
-      "Посипте яловичу грудинку крупною сіллю та чорним перцем 1:1.",
-      "Коптіть на дубових дровах при 115–120 °C до внутрішніх 75 °C.",
-      "Загорніть у крафт-папір, доведіть до 93 °C і дайте відпочити 1 годину.",
+      "Обваляйте крила в кукурудзяному крохмалі з сухим часником та паприкою.",
+      "Запікайте на середньому жарі, часто перевертаючи до золотистої скоринки.",
+      "Гарячими змішайте у мисці з вершковим соусом Баффало.",
+    ],
+  },
+  {
+    id: "sauce",
+    title: "Фірмовий соус BBQ на бурбоні",
+    tag: "Соуси 🥃",
+    equipment: "Плита / Полка",
+    time: "20  хв",
+    image: "/placeholder.svg",
+    bgClass: "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-zinc-800/30 via-zinc-900 to-black border-zinc-700/20",
+    steps: [
+      "Обсмажте цибулю та часник, додайте 50 мл бурбону і випаріть алкоголь.",
+      "Додайте кетчуп, яблучний оцет, мед, гірчицю та рідкий дим.",
+      "Уварюйте на повільному вогні 15 хвилин до густого глянцевого стану.",
+    ],
+  },
+  {
+    id: "shashlyk",
+    title: "Класичний шашлик зі свинини",
+    tag: "Класика 🥩",
+    equipment: "Мангал",
+    time: "40 хв + маринування",
+    image: "/images/recipe-shashlyk.png",
+    bgClass: "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-stone-900 via-zinc-900 to-black border-stone-800/40",
+    steps: [
+      "Натріть яловичу грудинку крупною сіллю та чорним перцем 1:1.",
+      "Замаринуйте з цибулею, сіллю, перцем і мінеральною водою на 4–6 годин.",
+      "Смажте на рівному жарі без полум’я, перевертаючи кожні 3–4 хвилини.",
     ],
   },
 ]
 
 export function Recipes() {
-  return (
-    <section id="recipes" className="scroll-mt-16 border-t border-border py-20">
-      <div className="mx-auto max-w-6xl px-4">
-        <p className="text-sm uppercase tracking-[0.3em] text-primary">Рецепти</p>
-        <h2 className="mt-2 font-display text-4xl uppercase md:text-5xl">Що приготувати на вогні</h2>
-        <p className="mt-4 max-w-xl text-muted-foreground">
-          Перевірені рецепти для мангалу, гриля та смокера — від простого шашлику до 12-годинного брискету.
-        </p>
+  const scrollRef = useRef<HTMLDivElement>(null)
 
-        <ul className="mt-10 grid gap-6 md:grid-cols-3">
+  // Функція для плавного гортання кнопками зліва направо на комп'ютері
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current
+      const scrollTo = direction === "left" ? scrollLeft - clientWidth * 0.7 : scrollLeft + clientWidth * 0.7
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" })
+    }
+  }
+
+  return (
+    <section id="recipes" className="scroll-mt-16 border-t border-zinc-900 bg-zinc-950 py-20 overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        {/* ВЕРХНЯ ЧАСТИНА: ТЕКСТ ТА СТРІЛОЧКИ */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12 gap-6">
+          <div className="max-w-xl">
+            <p className="text-sm uppercase tracking-[0.3em] text-orange-500 font-bold">Рецепти</p>
+            <h2 className="mt-2 font-display text-4xl uppercase md:text-5xl text-white">
+              Що приготувати <span className="text-orange-500">на вогні</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              Перевірені рецепти для мангалу, гриля та смокера — від простого шашлику до 12-годинного брискету.
+            </p>
+          </div>
+
+          {/* НАВІГАЦІЙНІ СТРІЛОЧКИ ДЛЯ КОМП'ЮТЕРА */}
+          <div className="hidden sm:flex items-center gap-2">
+            <button
+              onClick={() => scroll("left")}
+              className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:border-orange-500 hover:text-white transition"
+              aria-label="Назад"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:border-orange-500 hover:text-white transition"
+              aria-label="Вперед"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+        </div>
+
+        {/* ГОРТИННА СТРІЧКА ЗЛІВА НАПРАВО (ДЛЯ SWIPE ПАЛЬЦЕМ ТА СКРОЛУ МИШКОЮ) */}
+        <div
+          ref={scrollRef}
+          className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory pr-4 select-none"
+          style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
+        >
           {recipes.map((recipe) => (
-            <li key={recipe.id}>
-              <article className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card">
-                <div className="relative aspect-[4/3]">
-                  <Image
-                    src={recipe.image || "/placeholder.svg"}
-                    alt={recipe.title}
-                    fill
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+            <div
+              key={recipe.id}
+              className={`w-[290px] sm:w-[380px] shrink-0 snap-start rounded-xl border flex flex-col overflow-hidden bg-card transition-all duration-300 hover:border-orange-500/30 group ${recipe.bgClass}`}
+            >
+              {/* КАРТИНКА СТРАВИ З ФІКСОВАНИМ ПРЕVIEW */}
+              <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-zinc-900/60">
+                <Image
+                  src={recipe.image || "/placeholder.svg"}
+                  alt={recipe.title}
+                  fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                {/* МІТКА КАТЕГОРІЇ (TAG) ЗВЕРХУ КАРТИНКИ */}
+                <span className="absolute top-3 left-3 rounded bg-zinc-950/90 border border-zinc-800 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-orange-500">
+                  {recipe.tag}
+                </span>
+              </div>
+
+              {/* КОНТЕНТНА ЧАСТИНА КАРТКИ */}
+              <div className="flex flex-1 flex-col p-5 sm:p-6 justify-between">
+                <div>
+                  {/* ТЕХНІЧНІ ДАНІ (МАНГАЛ/ЧАС) */}
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground uppercase font-bold tracking-wider">
                     <span className="flex items-center gap-1">
-                      <Flame className="size-3.5 text-primary" aria-hidden="true" />
+                      <Flame className="size-3.5 text-orange-500" aria-hidden="true" />
                       {recipe.equipment}
                     </span>
                     <span className="flex items-center gap-1">
-                      <Clock className="size-3.5 text-primary" aria-hidden="true" />
+                      <Clock className="size-3.5 text-orange-500" aria-hidden="true" />
                       {recipe.time}
                     </span>
                   </div>
-                  <h3 className="mt-2 font-display text-xl uppercase">{recipe.title}</h3>
-                  <ol className="mt-4 flex list-decimal flex-col gap-2 pl-5 text-sm text-muted-foreground marker:text-primary">
-                    {recipe.steps.map((step) => (
-                      <li key={step}>{step}</li>
+
+                  {/* НАЗВА СТРАВИ */}
+                  <h3 className="mt-3 font-display text-xl uppercase text-white group-hover:text-orange-500 transition-colors duration-300">
+                    {recipe.title}
+                  </h3>
+
+                  {/* КРОКИ ПРИГОТУВАННЯ */}
+                  <ol className="mt-4 flex list-decimal flex-col gap-2 pl-5 text-sm text-zinc-400 font-medium marker:text-orange-500 marker:font-black">
+                    {recipe.steps.map((step, idx) => (
+                      <li key={idx} className="pl-1 leading-relaxed">
+                        {step}
+                      </li>
                     ))}
                   </ol>
                 </div>
-              </article>
-            </li>
+              </div>
+
+            </div>
           ))}
-        </ul>
+        </div>
+
       </div>
     </section>
   )
