@@ -43,7 +43,10 @@ export async function submitOrder(_prev: OrderState, formData: FormData): Promis
   const name = String(formData.get("name") ?? "").trim()
   const phone = String(formData.get("phone") ?? "").trim()
   const productId = String(formData.get("productId") ?? "")
-  const product = getProduct(productId)
+  // 🎯 Якщо обрано "none", створюємо віртуальний товар прямо тут, щоб сервер не видавав помилку!
+const product = productId === "none"
+  ? { id: "none", category: "mangals" as const, name: "Тільки аксесуари", price: 0 }
+  : getProduct(productId)
 
   if (name.length < 2 || name.length > 80) {
     return { status: "error", message: "Вкажіть, будь ласка, ваше ім’я." }
@@ -65,6 +68,11 @@ export async function submitOrder(_prev: OrderState, formData: FormData): Promis
     selectedLines.push(
       `• ${escapeHtml(option.name)}${qty > 1 ? ` × ${qty}` : ""} — ${formatPrice(qty * option.price)}`,
     )
+  }
+
+// 🎯 Захист від повністю порожнього замовлення:
+  if (productId === "none" && selectedLines.length === 0) {
+    return { status: "error", message: "Будь ласка, оберіть хоча б один аксесуар або додаткову опцію." }
   }
 
   const message = [

@@ -17,24 +17,18 @@ export function Calculator() {
     ? { id: "none", category: "mangals" as const, name: "ПУСТО", tagline: "", price: 0, image: "", specs: [] }
     : (getProduct(productId) ?? products[0])
 
-  const options = useMemo(() => {
-    // 🎯 Перевіряємо напряму черезproductId системи
-    if (productId === "none") {
-      const allAddons = getOptionsForCategory("mangals")
-        .concat(getOptionsForCategory("grills"))
-        .concat(getOptionsForCategory("smokers"))
+    const options = useMemo(() => {
+    if (productId === "none" || !productId) {
+      const allAddons = [
+        ...getOptionsForCategory("mangals"),
+        ...getOptionsForCategory("grills"),
+        ...getOptionsForCategory("smokers")
+      ]
       return allAddons.filter((opt, index, self) => index === self.findIndex((t) => t.id === opt.id))
     }
-    
-    // Для всіх інших звичайних моделей фільтруємо допи як завжди
-    const baseOptions = getOptionsForCategory(product.category)
-    return baseOptions.filter((option: any) => {
-      if (option.productId) {
-        return option.productId === productId
-      }
-      return true
-    })
+    return getOptionsForCategory(product.category)
   }, [product.category, productId])
+
 
   const [quantities, setQuantities] = useState<Record<string, number>>({})
   const [state, formAction, pending] = useActionState(submitOrder, initialState)
