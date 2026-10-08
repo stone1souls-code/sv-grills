@@ -65,17 +65,22 @@ export function Calculator() {
                 className="w-full rounded-md border border-zinc-800 bg-zinc-900 px-4 py-3 text-base text-white font-medium focus:border-orange-500 focus:outline-none"
                 style={{ backgroundColor: '#18181b', color: '#ffffff' }}
               >
-                {/* 🎯 Наш головний пункт */}
-                <option value="none" style={{ backgroundColor: '#18181b', color: '#ffffff' }} className="text-white bg-zinc-900">
+                {/* НАШ ГОЛОВНИЙ ПУНКТ */}
+                <option value="none" style={{ backgroundColor: '#18181b', color: '#f97316' }} className="font-bold text-orange-500 bg-zinc-900">
                   ПУСТО — 0 грн
                 </option>
 
                 {categories.map((c) => (
-                  <optgroup key={c.id} label={c.title} style={{ backgroundColor: '#18181b', color: '#a1a1aa' }} className="bg-zinc-900 text-zinc-400">
+                  <optgroup 
+                    key={c.id} 
+                    label={c.title} 
+                    style={{ backgroundColor: '#18181b', color: '#ffffff', fontQuantity: 'bold' }} 
+                    className="bg-zinc-900 text-white font-bold uppercase tracking-wider text-xs"
+                  >
                     {products
                       .filter((p) => p.category === c.id)
                       .map((p) => (
-                        <option key={p.id} value={p.id} style={{ backgroundColor: '#18181b', color: '#ffffff' }} className="text-white bg-zinc-900">
+                        <option key={p.id} value={p.id} style={{ backgroundColor: '#18181b', color: '#e4e4e7' }} className="bg-zinc-900 text-zinc-200 font-medium normal-case text-base">
                           {p.name} — {formatPrice(p.price)}
                         </option>
                       ))}
