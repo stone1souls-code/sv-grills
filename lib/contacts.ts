@@ -5,7 +5,7 @@ export const contacts = {
   phoneDisplay: "+38096 780 60 45",
   phoneHref: "tel:+380967806045",
   tiktokLabel: "Ми у Тік-Ток",
-  tiktokUrl: "https://tiktok.com",
+  tiktokUrl: "https://www.tiktok.com/@sidayvidpochuvay",
   schedule: "Пн-Нд 10:00-21:00",
   tiktokAccentColor: "#00f2fe"
 }
