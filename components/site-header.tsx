@@ -163,7 +163,7 @@ export function SiteHeader({ totalItems }: SiteHeaderProps) {
                 </div>
                 <div>
                   <div className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Графік роботи:</div>
-                  <p className="text-xs text-zinc-300 font-medium mt-0.5">Пн–Нд: 10:00 – 19:00</p>
+                  <p className="text-xs text-zinc-300 font-medium mt-0.5">Пн–Нд: 10:00 – 21:00</p>
                 </div>
                                 <div className="border-t border-zinc-900 pt-2 space-y-2">
                   {/* КНОПКА СКРОЛУ ДО КАРТИ */}

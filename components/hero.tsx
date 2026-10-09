@@ -2,8 +2,8 @@ import Image from "next/image"
 import { ArrowDown } from "lucide-react"
 
 const stats = [
-  { value: "Ми професійно орієнтуємось у металі" },
-  { value: "Багато", label: "проданих виробів" },
+  { value: "Продаємо", label: "мангали, які переходять у спадок." },
+  { value: "Купуєш раз", label: "користуєшся все життя." },
   { value: "Гарантуємо", label: "якість та оригінальність" },
 ]
 
