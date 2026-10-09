@@ -67,7 +67,7 @@ export const products: Product[] = [
     name: "Мангал «Стандарт BBQ»",
     tagline: "Класика, дві бокові полиці, одна дровниця",
     price: 6900,
-    image: "/images/mangal-roof.png",
+    image: "/images/mangal-standart.jpg",
     specs: [
       { label: "Сталь", value: "4 мм" },
       { label: "Шампурів", value: "9" },
@@ -109,19 +109,7 @@ export const products: Product[] = [
       { label: "Вага", value: "80 кг" },
     ],
   },
-  {
-    id: "grill-santa-maria",
-    category: "grills",
-    name: "Гриль «Санта-Марія & Chud Box»",
-    tagline: "Підйомна решітка зі штурвалом",
-    price: 27400,
-    image: "/images/grill-santa-maria.png",
-    specs: [
-      { label: "Решітка", value: "90×50 см" },
-      { label: "Ліфт", value: "Штурвал" },
-      { label: "Вага", value: "95 кг" },
-    ],
-  },
+  
   {
     id: "smoker-reverse-900",
     category: "smokers",
@@ -145,21 +133,7 @@ export const products: Product[] = [
       { label: "Колір", value: "червоний, чорний" },
     ],
   },
-  {
-    id: "smoker-trailer",
-    category: "smokers",
-    name: "Смокер «Техас» на причепі",
-    tagline: "Для кейтерингу та фестивалів",
-    price: 148000,
-    image: "/images/smoker-trailer.png",
-    specs: [
-      { label: "Камера", value: "Ø 800 мм" },
-      { label: "Сталь", value: "10 мм" },
-      { label: "Вага", value: "690 кг" },
-    ],
-  },
-]
-
+  ]
 export const productOptions: ProductOption[] = [
   {
     id: "grill-grate",
