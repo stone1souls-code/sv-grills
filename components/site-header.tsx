@@ -138,13 +138,49 @@ export function SiteHeader({ totalItems }: SiteHeaderProps) {
 >
   Рецепти
 </Link>
-          <Link
-            href="#about"
-            className="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-orange-500 transition-colors"
-          >
-            Про компанію
-          </Link>
+
+          {/* 🎯 ПРАВИЛЬНЕ ПРЕМІУМ-ВІКНО КОНТАКТІВ ДЛЯ ПК ВСЕРЕДИНІ НАВІГАЦІЇ */}
+          <div className="relative group">
+            <button className="flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-orange-500 transition-colors h-16">
+              Контакти
+            </button>
+            <div className="absolute top-14 right-0 w-64 rounded-xl border border-zinc-900 bg-zinc-950/95 p-4 shadow-xl backdrop-blur-md opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-200 z-50">
+              <div className="space-y-3 text-left">
+                <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 border-b border-zinc-900 pb-1.5">Зв'язок з майстернею</div>
+                <div>
+                  <div className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Телефон:</div>
+                  <a href="tel:+380967806045" className="text-sm font-black text-white hover:text-orange-500 transition-colors">+38096 780 60 45</a>
+                </div>
+                <div>
+                  <div className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Графік роботи:</div>
+                  <p className="text-xs text-zinc-300 font-medium mt-0.5">Пн–Нд: 10:00 – 19:00</p>
+                </div>
+                                <div className="border-t border-zinc-900 pt-2 space-y-2">
+                  {/* КНОПКА СКРОЛУ ДО КАРТИ */}
+                  <button 
+                    onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })} 
+                    className="w-full flex items-center justify-center rounded-lg bg-zinc-900/40 border border-zinc-900 py-2 text-[11px] font-black uppercase tracking-wider text-zinc-400 hover:text-white hover:border-zinc-800 transition-colors"
+                  >
+                    Показати карту
+                  </button>
+                  
+                  {/* ПРЕМІУМ ГІПЕРПОСИЛАННЯ В ТІК-ТОК */}
+                  <a 
+                    href="https://www.tiktok.com/@sidayvidpochuvay" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-full flex items-center justify-center gap-2 rounded-lg bg-zinc-900 border border-zinc-800/80 py-2.5 text-[11px] font-black uppercase tracking-wider text-white hover:text-orange-500 hover:border-orange-500/30 transition-colors shadow-inner"
+                  >
+                    <span>🎵</span>
+                    <span>Ми у Тік-Ток</span>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </div>
         </nav>
+
 
         {/* ПРАВА ЧАСТИНА: СУМКА З РОБОЧИМ ЛІЧИЛЬНИКОМ ТА БУРГЕР МЕНЮ */}
         <div className="flex items-center gap-3">
@@ -202,9 +238,29 @@ export function SiteHeader({ totalItems }: SiteHeaderProps) {
           <Link href="#recipes" onClick={() => setIsOpen(false)} className="border-b border-zinc-900/60 pb-3 text-base font-black uppercase tracking-wider text-zinc-200 hover:text-orange-500 transition-colors">
             Рецепти
           </Link>
-          <Link href="#about" onClick={() => setIsOpen(false)} className="border-b border-zinc-900/60 pb-3 text-base font-black uppercase tracking-wider text-zinc-200 hover:text-orange-500 transition-colors">
-            Про компанію
+                    <Link 
+            href="#footer" 
+            onClick={(e) => {
+              e.preventDefault();
+              setIsOpen(false);
+              window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+            }} 
+            className="border-b border-zinc-900/60 pb-3 text-base font-black uppercase tracking-wider text-zinc-200 hover:text-orange-500 transition-colors"
+          >
+            Контакти
           </Link>
+
+          {/* 🎵 НАШЕ НОВЕ МОБІЛЬНЕ ПОСИЛАННЯ В ТІК-ТОК — СТОЇТЬ СУВОРО НА СВОЄМУ МІСЦІ */}
+          <a 
+            href="https://www.tiktok.com/@sidayvidpochuvay" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            onClick={() => setIsOpen(false)}
+            className="border-b border-zinc-900/60 pb-3 text-base font-black uppercase tracking-wider text-zinc-400 hover:text-orange-500 transition-colors flex items-center gap-2"
+          >
+            <span>🎵</span>
+            <span>Ми у Тік-Ток</span>
+          </a>
         </nav>
       </div>
     </header>

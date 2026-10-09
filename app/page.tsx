@@ -9,6 +9,8 @@ import { OrderProvider } from "@/components/order-provider"
 import { Lightbox } from "@/components/lightbox"
 import { PrivacyLink } from "@/components/privacy-link"
 import { Platforms } from "@/components/platforms"
+import { Blog } from "@/components/blog"
+
 
 export default function Page() {
   return (
@@ -20,11 +22,12 @@ export default function Page() {
         <Calculator />
         <Recipes />
         <About />
+<Blog />
       </main>
       <SiteFooter />
       <Lightbox />
       <PrivacyLink />
       <Platforms />
-    </OrderProvider>
+</OrderProvider>
   )
 }

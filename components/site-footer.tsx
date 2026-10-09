@@ -33,7 +33,7 @@ export function SiteFooter() {
           </a>
         </address>
         <div className="text-sm text-muted-foreground md:text-right">
-          <p>Пн–Нд: 10:00 – 19:00</p>
+          <p>Пн–Сб: 9:00 – 19:00</p>
           <p className="mt-6">
             © {new Date().getFullYear()} {BRAND_NAME}
           </p>
