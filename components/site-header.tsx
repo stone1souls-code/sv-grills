@@ -235,10 +235,15 @@ export function SiteHeader({ totalItems }: SiteHeaderProps) {
           <Link href="#calculator" onClick={() => setIsOpen(false)} className="border-b border-zinc-900/60 pb-3 text-base font-black uppercase tracking-wider text-zinc-200 hover:text-orange-500 transition-colors">
             Калькулятор
           </Link>
-          <Link href="#recipes" onClick={() => setIsOpen(false)} className="border-b border-zinc-900/60 pb-3 text-base font-black uppercase tracking-wider text-zinc-200 hover:text-orange-500 transition-colors">
+         <Link href="#recipes" onClick={() => setIsOpen(false)} className="border-b border-zinc-900/60 pb-3 text-base font-black uppercase tracking-wider text-zinc-200 hover:text-orange-500 transition-colors">
             Рецепти
           </Link>
-                    <Link 
+
+            <Link href="#blog" onClick={() => setIsOpen(false)} className="border-b border-zinc-900/60 pb-3 text-base font-black uppercase tracking-wider text-zinc-200 hover:text-orange-500 transition-colors">
+            Блог
+          </Link>
+
+            <Link 
             href="#footer" 
             onClick={(e) => {
               e.preventDefault();
