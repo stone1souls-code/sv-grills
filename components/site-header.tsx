@@ -92,7 +92,7 @@ export function SiteHeader({ totalItems }: SiteHeaderProps) {
 
 
         {/* НАВІГАЦІЯ ДЛЯ КОМП'ЮТЕРІВ */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-5">
           
           {/* КНОПКА «КАТАЛОГ» З ВИПАДАЮЧИМ МЕНЮ */}
           <div className="relative" onMouseEnter={() => setIsCatalogOpen(true)} onMouseLeave={() => setIsCatalogOpen(false)}>
@@ -138,6 +138,16 @@ export function SiteHeader({ totalItems }: SiteHeaderProps) {
 >
   Рецепти
 </Link>
+            <Link
+            href="#blog"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("blog")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="hover:text-primary transition-colors text-xs font-bold uppercase tracking-widest text-zinc-400"
+          >
+            Блог
+          </Link>
 
           {/* 🎯 ПРАВИЛЬНЕ ПРЕМІУМ-ВІКНО КОНТАКТІВ ДЛЯ ПК ВСЕРЕДИНІ НАВІГАЦІЇ */}
           <div className="relative group">

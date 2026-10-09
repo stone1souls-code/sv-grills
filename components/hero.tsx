@@ -2,9 +2,9 @@ import Image from "next/image"
 import { ArrowDown } from "lucide-react"
 
 const stats = [
-  { value: "8 років", label: "у металі" },
-  { value: "1 200+", label: "виготовлених виробів" },
-  { value: "5 років", label: "гарантії на шви" },
+  { value: "Ми професійно орієнтуємось у металі" },
+  { value: "Багато", label: "проданих виробів" },
+  { value: "Гарантуємо", label: "якість та оригінальність" },
 ]
 
 export function Hero() {
@@ -44,8 +44,9 @@ export function Hero() {
           </a>
         </div>
         <dl className="mt-14 grid max-w-2xl grid-cols-3 gap-6 border-t border-border/60 pt-6">
-          {stats.map((s) => (
-            <div key={s.label}>
+          {stats.map((s, i) => (
+  <div key={i}>
+
               <dt className="sr-only">{s.label}</dt>
               <dd className="font-display text-2xl md:text-3xl">{s.value}</dd>
               <dd className="text-sm text-muted-foreground">{s.label}</dd>
