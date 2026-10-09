@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   description:
     'Мангали ручної роботи, вуличні грилі та оффсетні реверсні смокери з товстої сталі. Каталог і калькулятор комплектації з миттєвим розрахунком ціни.',
   generator: 'v0.app',
+  // 🎯 ВАШІ ПРЕМІАЛЬНІ PNG ЛОГОТИПИ ТЕПЕР ПРАЦЮЮТЬ БЕЗ ЖОДНИХ КОНФЛІКТІВ
   icons: {
     icon: [
       {
@@ -20,10 +21,6 @@ export const metadata: Metadata = {
       {
         url: '/icon-dark-32x32.png',
         media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
       },
     ],
     apple: '/apple-icon.png',
