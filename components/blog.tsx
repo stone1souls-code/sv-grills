@@ -30,8 +30,7 @@ export function Blog() {
               <BookOpen size={14} />
               Блог майстерні
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight">
-              Експертиза, <span className="text-orange-500">метал та вогонь</span>
+            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight"> Гід BBQ <span className="text-orange-500">корисна інформація</span>
             </h2>
           </div>
 
