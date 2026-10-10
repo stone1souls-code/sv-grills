@@ -62,16 +62,29 @@ export const products: Product[] = [
     ],
   },
   {
-    id: "mangal-standart",
+    id: "Twin-Wood BBQ",
     category: "mangals",
-    name: "Мангал «Стандарт BBQ»",
-    tagline: "Класика, дві бокові полиці, одна дровниця",
-    price: 6900,
-    image: "/images/mangal-standart.jpg",
+    name: "Мангал «Twin-Wood BBQ»",
+    tagline: "Класика, дві бокові полиці, дві дровниці, підставка, решітка",
+    price: 9500,
+    image: "/images/Twin-Wood BBQ.jpg",
     specs: [
       { label: "Сталь", value: "4 мм" },
       { label: "Шампурів", value: "9" },
-      { label: "Вага", value: "38 кг" },
+      { label: "Вага", value: "43 кг" },
+    ],
+  },
+{
+    id: "Side-Table BBQ",
+    category: "mangals",
+    name: "Мангал «Side-Table BBQ»",
+    tagline: "Класика, дві бокові полиці, одна дровниця, відкидний столик, підставка, решітка",
+    price: 8700,
+    image: "/images/Side-Table BBQ.jpg",
+    specs: [
+      { label: "Сталь", value: "4 мм" },
+      { label: "Шампурів", value: "9" },
+      { label: "Вага", value: "43 кг" },
     ],
   },
   {
@@ -100,7 +113,8 @@ export const products: Product[] = [
     image: "/images/ChudBox.jpg", // 🎯 Головне фото (саме воно показуватиметься в каталозі на сайті)
     images: [
       "/images/ChudBox.jpg", 
-      "/images/ChudBox2.jpg"
+      "/images/ChudBox2.jpg",
+      "/images/ChudBox3.jpg"
     ], // 🎯 Масив усіх фотографій для нашої галереї зі стрілочками
     specs: [
       { label: "Решітка велика", value: "78×43 см" },

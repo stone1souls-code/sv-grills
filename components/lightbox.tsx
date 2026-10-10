@@ -6,7 +6,8 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react"
 const customGalleries: Record<string, string[]> = {
   "/images/ChudBox.jpg": [
     "/images/ChudBox.jpg", 
-    "/images/ChudBox2.jpg"
+    "/images/ChudBox2.jpg",
+    "/images/ChudBox3.jpg"
   ],
   "/images/mangal-premium.jpg": [
     "/images/mangal-premium.jpg", 
