@@ -109,7 +109,7 @@ export const products: Product[] = [
     category: "grills",
     name: "Гриль «Chud Box 80»",
     tagline: "Дві стальні решітки, кришка, колеса",
-    price: 30000,
+    price: 27000,
     image: "/images/ChudBox.jpg", // 🎯 Головне фото (саме воно показуватиметься в каталозі на сайті)
     images: [
       "/images/ChudBox.jpg", 
